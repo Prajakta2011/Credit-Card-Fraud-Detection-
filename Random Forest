@@ -1,0 +1,19 @@
+#Random Forest
+
+Model0 = RandomForestClassifier(n_estimators=100, random_state=42)
+Model0.fit(X_train, y_train)
+
+# Use the classifier to make predictions on the test data
+y_pred = Model0.predict(X_test)
+submit4 = st.button('Random Forest')
+
+if submit4:
+    # get input feature values
+    features = np.array(input_df_lst, dtype=np.float64)
+    # make prediction
+    prediction = Model0.predict(features.reshape(1, -1))
+    # display result
+    if prediction[0] == 0:
+        st.write("Legitimate transaction")
+    else:
+        st.write("Fraudulent transaction")
